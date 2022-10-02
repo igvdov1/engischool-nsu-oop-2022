@@ -1,2 +1,4 @@
 # engischool-nsu-oop-2022
-The base repository for the tasks reviewing of the OOP course 2022
+Лабораторная 1-1
+Исправлены все замечания
+Доп функционала нет Инструкций к сборке нет
