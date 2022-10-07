@@ -7,7 +7,7 @@
 
 ComplexDigital::ComplexDigital(double a, double b) : re(a), im(b) {}
 ComplexDigital::ComplexDigital(double a) : re(a), im(0) {}
-inline ComplexDigital::ComplexDigital() : re(0), im(0) {}
+ComplexDigital::ComplexDigital() : re(0), im(0) {}
 
 
 ComplexDigital ComplexDigital::operator+(const ComplexDigital& a) const

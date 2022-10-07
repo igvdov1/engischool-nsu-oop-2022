@@ -9,7 +9,9 @@ int main()
   ComplexDigital t = z - a;
   ComplexDigital g = t + p;
   ComplexDigital k(2, 1);
-
+  ComplexDigital u;
+  std::cin >> u;
+  std::cout << u << std::endl;
   std::cout << 5 / k << std::endl;
   if (t != p)
   {

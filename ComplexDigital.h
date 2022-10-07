@@ -6,7 +6,7 @@ class ComplexDigital
 {
 
 public:
-  inline ComplexDigital();
+  ComplexDigital();
   explicit ComplexDigital(double a);
   ComplexDigital(double a, double b);
 
