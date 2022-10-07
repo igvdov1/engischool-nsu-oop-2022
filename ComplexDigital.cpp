@@ -12,12 +12,12 @@ inline ComplexDigital::ComplexDigital() : re(0), im(0) {}
 
 ComplexDigital ComplexDigital::operator+(const ComplexDigital& a) const
 {
-  return {a.re + this->re, a.im + this->im};
+  return {a.re + re, a.im + im};
 }
 
 ComplexDigital ComplexDigital::operator+(const double& a) const
 {
-  return {this->re + a, this->im};
+  return {re + a, im};
 }
 
 ComplexDigital operator+(const double& a, const ComplexDigital& b)
