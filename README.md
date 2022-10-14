@@ -1,2 +1,4 @@
 # engischool-nsu-oop-2022
-The base repository for the tasks reviewing of the OOP course 2022
+Лабораторная 2-2. Компилятор Mingw
+Добавил конструктор через C++ вектор и оператор= к вектору С++
+Инструкций к компиляции нет
