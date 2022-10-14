@@ -1,16 +1,14 @@
 #include <iostream>
 #include "vector.h"
-#include "vector"
+#include <vector>
 
 int main()
 {
-  std::vector<double> a(3);
-  std::vector<double> b(3);
-  b.assign({1, 4, 5});
-  a.assign({1, 2, 3});
-  Vector g(3);
-  std::cin >> g;
-  std::cout << g << std::endl;
+  std::vector<double> a = {1, 2, 3};
+  std::vector<double> b = {1, 4 ,5};
+  Vector g(a);
+  Vector f(b);
+  std::cout << (g*f) << std::endl;
   Vector M(3);
   M = a;
   std::cout << M[2] << std::endl;
@@ -26,6 +24,10 @@ int main()
     std::cout << "they are not equal" << std::endl;
   }
   M = H;
+  std::cout << "Vector" << std::endl;
+  std::cout << M << std::endl;
+  M[1] = 15;
+  std::cout << M << std::endl;
   if (M == H)
   {
     std::cout << "they are equal" << std::endl;

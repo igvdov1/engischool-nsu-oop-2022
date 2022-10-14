@@ -14,16 +14,17 @@ public:
   Vector(const std::vector<double>& a);
 
   Vector operator+(const Vector& a) const;
-  Vector operator+=(const Vector& a);
+  Vector& operator+=(const Vector& a);
+
 
   Vector operator-(const Vector& a) const;
-  Vector operator-=(const Vector& a);
+  Vector& operator-=(const Vector& a);
 
   Vector operator*(const double& a) const;
   double operator*(const Vector& a) const;
 
-  Vector operator*=(const double& a);
-  double operator[](const unsigned int& a);
+  Vector& operator*=(const double& a);
+  double& operator[](const unsigned int& a);
 
   Vector& operator=(const std::vector<double>& a);
   Vector& operator=(const Vector& a);
@@ -35,6 +36,6 @@ public:
   friend std::istream& operator>>(std::istream&, Vector& a);
 
 private:
-  std::vector<double> V;
-  unsigned int len;
+  std::vector<double>* V;
+  std::vector<double>::size_type len;
 };
