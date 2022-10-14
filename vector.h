@@ -34,7 +34,7 @@ public:
 
   friend std::ostream& operator<<(std::ostream&, Vector& a);
   friend std::istream& operator>>(std::istream&, Vector& a);
-
+  ~Vector();
 private:
   std::vector<double>* V;
   std::vector<double>::size_type len;

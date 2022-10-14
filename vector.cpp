@@ -159,3 +159,9 @@ std::istream& operator>>(std::istream& in, Vector& a)
   }
   return in;
 }
+
+Vector::~Vector()
+{
+  delete [] V;
+  len = 0;
+}
