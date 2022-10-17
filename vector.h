@@ -24,7 +24,8 @@ public:
   double operator*(const Vector& a) const;
 
   Vector& operator*=(const double& a);
-  double& operator[](const unsigned int& a);
+  double& operator[](const unsigned int& a) const;
+
 
   Vector& operator=(const std::vector<double>& a);
   Vector& operator=(const Vector& a);
@@ -37,5 +38,5 @@ public:
   ~Vector();
 private:
   std::vector<double>* V;
-  std::vector<double>::size_type len;
+  size_t len;
 };

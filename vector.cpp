@@ -4,31 +4,41 @@
 
 Vector::Vector()
 {
-  V = nullptr;
+  V = new std::vector<double>;
   len = 0;
 
 }
 
 Vector::Vector(const int& a)
 {
-  V = new std::vector <double>(a);
+  V = new std::vector<double>(a);
   len = a;
 }
 
 Vector::Vector(const std::vector<double>& a)
 {
-  V = new std::vector <double>(a);
+  V = new std::vector<double>(a);
   len = std::size(a);
 }
+
+
 
 Vector Vector::operator+(const Vector& a) const
 {
   std::vector<double> temp(len);
-  if (a.len == len)
+  unsigned int minlen = std::min(len, a.len);
+  for (unsigned int i = 0; i < minlen; i++)
   {
-    for (unsigned int i = 0; i < len; i++)
+    temp[i] = a[i] + (*this)[i];
+  }
+  for (unsigned int i = minlen; i < std::max(len, a.len); i++)
+  {
+    if (a.len == minlen)
     {
-      temp[i] = (*a.V)[i] + (*V)[i];
+      temp[i] = (*this)[i];
+    } else
+    {
+      temp[i] = a[i];
     }
   }
   return {temp};
@@ -36,22 +46,27 @@ Vector Vector::operator+(const Vector& a) const
 
 Vector& Vector::operator+=(const Vector& a)
 {
-  for(unsigned int i = 0; i < len; i++)
-  {
-    (*V)[i] += (*a.V)[i];
-  }
-  return *this;
+  *this = *this + a;
+  return {*this};
 }
 
 
 Vector Vector::operator-(const Vector& a) const
 {
   std::vector<double> temp(len);
-  if (a.len == len)
+  unsigned int minlen = std::min(len, a.len);
+  for (unsigned int i = 0; i < minlen; i++)
   {
-    for (unsigned int i = 0; i < len; i++)
+    temp[i] = (*this)[i] - a[i];
+  }
+  for (unsigned int i = minlen; i < std::max(len, a.len); i++)
+  {
+    if (a.len == minlen)
     {
-      temp[i] = (*V)[i] - (*a.V)[i];
+      temp[i] = (*this)[i];
+    } else
+    {
+      temp[i] = -a[i];
     }
   }
   return {temp};
@@ -59,10 +74,7 @@ Vector Vector::operator-(const Vector& a) const
 
 Vector& Vector::operator-=(const Vector& a)
 {
-  for(unsigned int i = 0; i < len; i++)
-  {
-    (*V)[i] -= (*a.V)[i];
-  }
+  *this = *this - a;
   return *this;
 }
 
@@ -72,7 +84,7 @@ Vector Vector::operator*(const double& a) const
   std::vector<double> temp(len);
   for (unsigned int i = 0; i < len; i++)
   {
-    temp[i] = (*V)[i] * a;
+    temp[i] = (*this)[i] * a;
   }
   return {temp};
 }
@@ -84,7 +96,7 @@ double Vector::operator*(const Vector& a) const
   {
     for (unsigned int i = 0; i < len; i++)
     {
-      sum += (*V)[i] * (*a.V)[i];
+      sum += (*this)[i] * a[i];
     }
   }
   return sum;
@@ -92,19 +104,16 @@ double Vector::operator*(const Vector& a) const
 
 Vector& Vector::operator*=(const double& a)
 {
-  for(unsigned int i = 0; i < len; i++)
-  {
-    (*V)[i] *= a;
-  }
+  *this = *this * a;
   return *this;
 }
 
-
-double& Vector::operator[](const unsigned int& a)
+double& Vector::operator[](const unsigned int&a) const
 {
 
   return (*V)[a];
 }
+
 
 
 Vector& Vector::operator=(const std::vector<double>& a)
@@ -115,7 +124,13 @@ Vector& Vector::operator=(const std::vector<double>& a)
 }
 
 
-Vector& Vector::operator=(const Vector& a) = default;
+Vector& Vector::operator=(const Vector& a)
+{
+  len = a.len;
+  V = new std::vector<double>(a.len);
+  *V = *(a.V);
+  return *this;
+}
 
 
 bool Vector::operator==(const Vector& a) const
@@ -155,13 +170,14 @@ std::istream& operator>>(std::istream& in, Vector& a)
   in >> a.len;
   for (unsigned int i = 0; i < a.len; i++)
   {
-    in >> (*a.V)[i];
+    in >> a[i];
   }
   return in;
 }
 
 Vector::~Vector()
 {
-  delete [] V;
+  delete &V;
   len = 0;
 }
+
